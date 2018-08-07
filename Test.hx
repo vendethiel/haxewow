@@ -4,7 +4,7 @@ class Test{
     public static function main(){
         trace('hello world!');
 
-        wrap(function(f: String, g: String, args, penul: String, last: String) {
+        wrap(function(_, f: String, g: String, args, _, penul: String, _, last: String) {
           trace(args);
         });
     }
@@ -20,9 +20,15 @@ class Test{
             var param = fn.args[i];
             var name = param.name;
             var type = param.type;
+
+            if (name == "_") {
+              if (seenSplice) spliceI++;
+              continue;
+            }
+
             if (seenSplice) {
 
-              if (param.name == "args")
+              if (name == "args")
                 return Context.error("Cannot splice twice", fnExpr.pos);
               else if (param.type == null)
                 exprs.push(macro var $name = __rest[$v{spliceI}]);
