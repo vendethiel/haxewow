@@ -9,7 +9,7 @@ class Test{
         });
         /** generates:
 
-         		Reflect.makeVarArgs(function(__args:Array<Dynamic>) {
+            Reflect.makeVarArgs(function(__args:Array<Dynamic>) {
               var f = __args[1];
               var g = __args[2];
               var args = __args.slice(3, -4);
