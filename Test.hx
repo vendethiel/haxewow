@@ -7,6 +7,19 @@ class Test{
         wrap(function(_, f: String, g: String, args, _, penul: String, _, last: String) {
           trace(args);
         });
+        /** generates:
+
+         		Reflect.makeVarArgs(function(__args:Array<Dynamic>) {
+              var f = __args[1];
+              var g = __args[2];
+              var args = __args.slice(3, -4);
+              var __rest = __args.splice(-4, 4);
+              var penul = __rest[1];
+              var last = __rest[3];
+              haxe.Log.trace(args, {fileName : "Test.hx", lineNumber : 8, className : "Test", methodName : "main"});
+            });
+
+        */
     }
 
     public static macro function wrap(fnExpr: Expr) {
