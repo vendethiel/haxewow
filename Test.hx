@@ -12,7 +12,7 @@ class Test{
             Reflect.makeVarArgs(function(__args:Array<Dynamic>) {
               var f = __args[1];
               var g = __args[2];
-              var args = __args.slice(3, -4);
+              var args = __args.slice(3, __args.length-4);
               var __rest = __args.splice(-4, 4);
               var penul = __rest[1];
               var last = __rest[3];
@@ -53,7 +53,7 @@ class Test{
 
               if (param.name == "args") {
                 var diff = l - 1 - i;
-                exprs.push(macro var $name = __args.slice($v{i}, $v{-diff}));
+                exprs.push(macro var $name = __args.slice($v{i}, __args.length - $v{diff}));
                 exprs.push(macro var __rest = __args.splice($v{-diff}, $v{diff}));
                 seenSplice = true;
               } else if (param.type == null)
